@@ -3,4 +3,25 @@ pipeline {
   stages {
    stage("Git Checkout") {
     steps{
-      git credentialsId: 'PriyaRao33', url:
+      git credentialsId: 'PriyaRao33', url: 'https://github.com/PriyaRao33/jenkins.git'
+       }
+      }
+      stage("Maven Build") {
+       steps{
+        sh "mvn clean package"
+        sh "mv target/* .war target/jenkins.war"
+        }
+       }
+       stage("deploy-dev"){
+        steps{
+         sshagent(['tomcat-new']) {
+          sh """
+             scp -o StrictHostKeyChecking=no target/jenkins.war  ec2-user@172.31.38.118:/home/ec2-user/apache-tomcat-9.0.46/webapps/
+             ssh ec2-user@172.31.38.118 /home/ec2-user/apache-tomcat-9.0.46/bin/shoutdown.sh
+             ssh ec2-user@172.31.38.118 /home/ec2-user/apache-tomcat-9.0.46/bin/startup.sh
+             """
+             }
+             }
+             }
+             }
+             }
