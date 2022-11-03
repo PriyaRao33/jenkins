@@ -3,18 +3,6 @@ region= "us-east-1"
 access_key="AKIAQH5UHF36W33AJVMY"
 secret_key= "XZnBqjoQyjWjnajNm0cjMUDNppabJQjsmAvy1UF2"
 }
-resource "aws_instance"     "ec2_example" {
-ami= "ami-09d3b3274b6c5d4aa"
-instance_type= var.instance_type
-tags= {
-name= "priya"
-}
-}
-resource "aws_s3_bucket"   "web" {
-bucket= "maha0099"
-}
-variable "instance_type" {
-description= "instance type t2.micro"
-type=string
-default="t2.micro"
+resource  "aws_s3_bucket"  "web" {
+  bucket="lilly9988"
 }
