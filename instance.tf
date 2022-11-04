@@ -5,6 +5,7 @@ resource "aws_instance"   "web" {
     name = "priya"
   }
 }
-resource "aws_s3_bucket"  "my_bucket" {
-  bucket = "my-bucket-priya"
+resource "aws_s3_bucket"  "my_buc" {
+bucket = "kshrutjija336"
 }
+
